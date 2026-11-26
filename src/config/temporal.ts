@@ -1,5 +1,5 @@
 import { Connection, Client } from '@temporalio/client'; 
-import { TEMPORAL_ADDRESS, TEMPORAL_NAMESPACE } from './env.js';
+import { TEMPORAL_ADDRESS, TEMPORAL_API_KEY, TEMPORAL_NAMESPACE } from './env.js';
 
 
 let client: Client | null = null;
@@ -9,6 +9,7 @@ export async function getTemporalClient() {
 
     const connection = await Connection.connect({
         address: TEMPORAL_ADDRESS,
+        ...(TEMPORAL_API_KEY ? { tls: true, apiKey: TEMPORAL_API_KEY } : {}),
     });
 
     client = new Client({

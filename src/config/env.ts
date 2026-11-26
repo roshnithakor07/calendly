@@ -12,6 +12,8 @@ export const SLOT_GENERATION_DAYS = Number(process.env.SLOT_GENERATION_DAYS) || 
 export const TEMPORAL_ADDRESS = process.env.TEMPORAL_ADDRESS || 'localhost:7233';
 export const TEMPORAL_NAMESPACE = process.env.TEMPORAL_NAMESPACE || 'default';
 export const TEMPORAL_TASK_QUEUE = process.env.TEMPORAL_TASK_QUEUE || 'calendly-tasks';
+// Set for Temporal Cloud (API key auth over TLS); leave empty for a local Temporal server
+export const TEMPORAL_API_KEY = process.env.TEMPORAL_API_KEY || '';
 
 export const TEMPORAL_ENABLED = 'true'; // write a function which can
 // determine if temporal is enabled based on some health checks

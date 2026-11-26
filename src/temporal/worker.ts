@@ -1,5 +1,5 @@
 import { NativeConnection, Worker } from "@temporalio/worker";
-import { TEMPORAL_ADDRESS, TEMPORAL_NAMESPACE, TEMPORAL_TASK_QUEUE } from "../config/env.js";
+import { TEMPORAL_ADDRESS, TEMPORAL_API_KEY, TEMPORAL_NAMESPACE, TEMPORAL_TASK_QUEUE } from "../config/env.js";
 import * as activities from "./activites/index.js";
 import { fileURLToPath } from "node:url";
 import { extname } from "node:path";
@@ -10,6 +10,7 @@ const workflowsExtension = extname(fileURLToPath(import.meta.url));
 async function run() {
     const connection = await NativeConnection.connect({
         address: TEMPORAL_ADDRESS,
+        ...(TEMPORAL_API_KEY ? { tls: true, apiKey: TEMPORAL_API_KEY } : {}),
     });
 
     const worker = await Worker.create({
