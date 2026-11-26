@@ -1,0 +1,52 @@
+{
+  "name": "CalendlyProject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "prisma generate && tsc",
+    "start": "node dist/src/server.js",
+    "start:worker": "node dist/src/temporal/worker.js",
+    "dev": "nodemon --watch src --ext ts --exec 'tsx src/server.ts'",
+    "dev:worker": "nodemon --watch src --ext ts --exec 'tsx src/temporal/worker.ts'",
+    "prisma:format": "npx prisma format",
+    "prisma:migrate": "npx prisma migrate dev",
+    "prisma:generate": "npx prisma generate",
+    "prisma:all": "npm run prisma:format && npm run prisma:migrate && npm run prisma:generate",
+    "prisma:studio": "npx prisma studio",
+    "google:setup": "tsx src/utils/google-setup.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.33.2",
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.8.0",
+    "@prisma/client": "^7.8.0",
+    "@temporalio/activity": "^1.20.2",
+    "@temporalio/client": "^1.20.2",
+    "@temporalio/worker": "^1.20.2",
+    "@temporalio/workflow": "^1.20.2",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "googleapis": "^173.0.0",
+    "luxon": "^3.7.2",
+    "nodemailer": "^9.0.3",
+    "pg": "^8.21.0",
+    "slug": "^11.0.1",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/luxon": "^3.7.2",
+    "@types/node": "^25.9.1",
+    "@types/nodemailer": "^8.0.1",
+    "@types/pg": "^8.20.0",
+    "@types/slug": "^5.0.9",
+    "nodemon": "^3.1.14",
+    "prisma": "^7.8.0",
+    "tsx": "^4.22.4",
+    "typescript": "^6.0.3"
+  }
+}
